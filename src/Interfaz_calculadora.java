@@ -11,6 +11,8 @@
 public class Interfaz_calculadora extends javax.swing.JFrame {
     public double n1=0;
     public double n2=0;
+    public double resultado=0;
+    public String signo="";
 
     /**
      * Creates new form Interfaz_calculadora
@@ -52,7 +54,7 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
         boton2 = new javax.swing.JButton();
         botonsuma = new javax.swing.JButton();
         botonpdecimal = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
+        botonigual = new javax.swing.JButton();
         boton0 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,6 +101,11 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
         botondividir.setBackground(new java.awt.Color(102, 102, 102));
         botondividir.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         botondividir.setText("/");
+        botondividir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botondividirActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(102, 102, 102));
         jButton10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -217,9 +224,14 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
             }
         });
 
-        jButton23.setBackground(new java.awt.Color(51, 153, 0));
-        jButton23.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton23.setText("=");
+        botonigual.setBackground(new java.awt.Color(51, 153, 0));
+        botonigual.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        botonigual.setText("=");
+        botonigual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonigualActionPerformed(evt);
+            }
+        });
 
         boton0.setBackground(new java.awt.Color(102, 102, 102));
         boton0.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -292,7 +304,7 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonpdecimal, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botonigual, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -338,7 +350,7 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonpdecimal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(botonigual, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botondividir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -385,15 +397,7 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
         }
         else
         {
-            if(Character.toString(pantalla.getText().charAt(n-1))=="+")
-            {
-                pantalla.setText("");
-                pantalla.setText(pantalla.getText()+"1");
-            }
-            else
-            {
-                pantalla.setText(pantalla.getText()+"1");
-            }
+            pantalla.setText(pantalla.getText()+"1");
         }
     }//GEN-LAST:event_boton1ActionPerformed
 
@@ -506,39 +510,38 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
 
     private void botonrestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonrestaActionPerformed
         // TODO add your handling code here:
-        if(Double.parseDouble(pantalla.getText())==0)
-        {
-        }
-        else
-        {
-            n1=Double.parseDouble(pantalla.getText());
-            pantalla.setText(pantalla.getText()+" - ");
-        }
+        n1=Double.parseDouble(pantalla.getText());
+        signo="-";
+        pantalla.setText("0");
     }//GEN-LAST:event_botonrestaActionPerformed
 
     private void botonsumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonsumaActionPerformed
         // TODO add your handling code here:
-        if(Double.parseDouble(pantalla.getText())==0)
-        {
-        }
-        else
-        {
-            n1=Double.parseDouble(pantalla.getText());
-            pantalla.setText(pantalla.getText()+" + ");
-        }
+        n1=Double.parseDouble(pantalla.getText());
+        signo="+";
+        pantalla.setText("0");
     }//GEN-LAST:event_botonsumaActionPerformed
 
     private void botonmultipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonmultipActionPerformed
         // TODO add your handling code here:
-        if(Double.parseDouble(pantalla.getText())==0)
-        {
-        }
-        else
-        {
-            n1=Double.parseDouble(pantalla.getText());
-            pantalla.setText(pantalla.getText()+" * ");
-        }
+        n1=Double.parseDouble(pantalla.getText());
+        signo="*";
+        pantalla.setText("0");
     }//GEN-LAST:event_botonmultipActionPerformed
+
+    private void botondividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botondividirActionPerformed
+        // TODO add your handling code here:
+        n1=Double.parseDouble(pantalla.getText());
+        signo="/";
+        pantalla.setText("0");
+    }//GEN-LAST:event_botondividirActionPerformed
+
+    private void botonigualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonigualActionPerformed
+        // TODO add your handling code here:
+        n2=Double.parseDouble(pantalla.getText());
+        resultado=calculadora(n1,n2,signo);
+        pantalla.setText(String.valueOf(resultado));
+    }//GEN-LAST:event_botonigualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -574,6 +577,34 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
             }
         });
     }
+    public static double calculadora(double n1, double n2, String signo)
+    {
+        double result=0;
+        switch(signo)
+        {
+            case "+":
+            {
+                result=n1+n2;
+                break;
+            }
+            case "-":
+            {
+                result=n1-n2;
+                break;
+            }
+            case "*":
+            {
+                result=n1*n2;
+                break;
+            }
+            case "/":
+            {
+                result=n1/n2;
+                break;
+            }
+        }
+        return result;        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton0;
@@ -583,6 +614,7 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
     private javax.swing.JButton boton4;
     private javax.swing.JButton botonborrar;
     private javax.swing.JButton botondividir;
+    private javax.swing.JButton botonigual;
     private javax.swing.JButton botonmultip;
     private javax.swing.JButton botonpdecimal;
     private javax.swing.JButton botonresta;
@@ -594,7 +626,6 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
