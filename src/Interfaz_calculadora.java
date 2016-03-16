@@ -583,11 +583,18 @@ public class Interfaz_calculadora extends javax.swing.JFrame {
 
     private void botonborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonborrarActionPerformed
         // TODO add your handling code here:
-        if (pantalla.getText().equals("0")) {
-        } else {
-            String numero = pantalla.getText();
-            numero = numero.substring(0, numero.length() - 1);
-            pantalla.setText(numero);
+        String numero = pantalla.getText();
+        if(numero.length()==1)
+        {
+            pantalla.setText("0");
+        }
+        else
+        {
+            if (pantalla.getText().equals("0")) {
+            } else {
+                numero = numero.substring(0, numero.length() - 1);
+                pantalla.setText(numero);
+            }
         }
 
     }//GEN-LAST:event_botonborrarActionPerformed
